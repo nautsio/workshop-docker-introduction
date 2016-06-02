@@ -552,10 +552,7 @@ INSTRUCTION arguments
 Create a file 'Dockerfile' in the subdirectory tomcat7 with the following content.
 
 ```
-FROM    ubuntu
-RUN     apt-get -y install tomcat7
-EXPOSE  8080
-CMD ["/bin/bash", "-c",  "service tomcat7 start;while service tomcat7 status;do sleep 1;done"]
+FROM    tomcat
 ```
 
 ```
