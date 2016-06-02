@@ -550,7 +550,9 @@ CMD    ["x11vnc", "-forever", "-usepw", "-create"]
 !SLIDE
 ## Lab exercise
 <center>
-<ul><li>Create a tomcat7 image name $USER/tomcat7</li>
+<ul>
+<li>Create a tomcat7 image name $USER/tomcat7</li>
+<li>push it to the Docker Hub registry</li>
 <li>start 5 instances</li>
 <li>show they are operational</li>
 </ul>
@@ -594,8 +596,6 @@ $ IPADDRESS=$(docker inspect inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER
 # http request on image IP address
 $ wget http://$IPADDRESS:8080
 ```
-
-
 
 
 !SUB
