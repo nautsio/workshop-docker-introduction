@@ -599,7 +599,7 @@ $ wget http://$IPADDRESS:8080
 ```
 
 
-!SLIDE
+!SUB
 
 ## creating a farm of tomcat
 
@@ -614,4 +614,10 @@ while [ $count -lt 5 ] ; do
 done
 echo all tomcats : $TOMCAT_IPS
 ```
+!SLIDE
+<center><div style="width: 75%; height: auto;"><img src="img/xpirit.png"/></div></center>
+<br />
+<center>
+[http://nauts.io/workshop-docker-introduction](http://nauts.io/workshop-docker-introduction)
+</center>
 
