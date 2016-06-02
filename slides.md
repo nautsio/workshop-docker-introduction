@@ -35,7 +35,7 @@
 
 !SUB
 ## Separation of Concerns
-<center><div style="width: 75%; height: auto;"><img src="img/devops-concerns.jpg"/></div></center>
+<center><div style="width: 75%; height: auto;"><img src="img/devops-concerns.png"/></div></center>
 
 
 !SUB
@@ -68,7 +68,7 @@ And it is fast!
 ## Creating a Docker image
 <center><div style="width: 75%; height: auto;"><img src="img/create-docker-image.png"/></div></center>
 
-!SUB 
+!SUB
 ## Dockerfile
 
 ```
@@ -87,16 +87,16 @@ CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 - contain everything needed to run the app
 - are portable across daemons
 - are built in layers
-  - ordered to actions, Add file, Expose port, Run 
+  - ordered to actions, Add file, Expose port, Run
 - stored in a Registry
 
 
-!SUB 
+!SUB
 ## Docker Hub - Image Registry
 <div style="position: absolute; right: 0; top:100; width: 40%; height: auto;"><img src="img/docker-hub.png"/></div>
 - Contains Docker images
 - Public Registry with official images
-- Hosts your own private Registry 
+- Hosts your own private Registry
 
 !SUB
 ## Running a container
@@ -632,4 +632,3 @@ echo all tomcats : $TOMCAT_IPS
 <center>
 [http://nauts.io/workshop-docker-introduction](http://nauts.io/workshop-docker-introduction)
 </center>
-
