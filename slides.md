@@ -369,10 +369,10 @@ Running containers in the background
 ```
 # run -d means detached detach
 $ DOCKER_ID=$(docker run -d ubuntu \
-bash -c \'while true ; \
+bash -c 'while true ; \
 	do sleep 1; \
 	echo hello world at $(date); \
-	done\' )
+	done' )
 $ echo $DOCKER_ID           # shows id of container
 $ docker attach $DOCKER_ID  # attach to stdout of the container
 $ docker ps 	      	    # shows all running containers
@@ -390,10 +390,10 @@ $ docker run ubuntu /bin/ls /tmp
 
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d ubuntu \
-bash -c \'while true ; do \
+bash -c 'while true ; do \
 		date &gt; /tmp/$(date +%Y%m%d%H%M); \
 		sleep 60;\
-	done\')
+	done')
 
 # See the changes on the filesystem
 $ docker diff $DOCKER_ID
@@ -411,10 +411,10 @@ $ docker run ubuntu /bin/ls /tmp
 ```
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d ubuntu \
-bash -c \'while true ; do \
+bash -c 'while true ; do \
 	date &gt; /tmp/$(date +%Y%m%d%H%M); \
 	sleep 60; \
-     done\' )
+     done' )
 
 # See the changes on the filesystem and commit
 $ docker diff $DOCKER_ID
