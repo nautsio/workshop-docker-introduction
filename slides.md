@@ -20,30 +20,26 @@
 </center>
 
 
-!SLIDE
-## What's the problem with VM's?
+!SUB
+## Docker has taken the world by Storm!
 
-<center>
-<ul>
-<li>Within our private PaaS approach we like to keep things simple by creating a virtual machine per appliance</li>
-<li>Good for:</li>
-<ul>
-<li>managebility</li>
-<li>operability</li>
-<li>resource management</li>
-</ul>
-<li>But simplicity comes at a price...</li>
-<ul>
-<li>License cost</li>
-<li>Resources overhead / performance</li>
-</ul>
-</ul>
+- 400.000.000 downloads
+- 300.000+ Dockerized applications
+- 50.000+ third party projects on Github
+- 150.000.000 dollar in funding
 
-</center>
+!SUB
+## Why? It Supports True DevOps!
+<center><div style="width: 75%; height: auto;"><img src="img/true-devops.jpg"/></div></center>
 
 
-!SLIDE
-## Enter Docker
+!SUB
+## Separation of Concerns
+<center><div style="width: 75%; height: auto;"><img src="img/devops-concerns.jpg"/></div></center>
+
+
+!SUB
+## Docker, the goodies
 
 You get all the goodies of virtual machine per appliance, but without the cost.
 
@@ -55,22 +51,12 @@ And it is fast!
 
 
 
-
-!SLIDE
+!SUB
 ## What is Docker?
 
 - Container management for Linux
 - Abstraction for DevOps workflow
 - Adds images, image repository and version control to containers
-
-!SUB
-## Docker by Numbers
-
-- 400.000.000 downloads
-- 300.000+ Dockerized applications
-- 50.000+ third party projects on Github
-- 150.000.000 dollar in funding
-
 
 !SUB
 ## Basic Components
