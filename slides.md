@@ -564,16 +564,18 @@ INSTRUCTION arguments
 
 ```
 # Create a Docker file
-$ ( cat &lt;&lt;!
+
+```
 FROM    ubuntu
 
 RUN     apt-get -y install tomcat7
 
 EXPOSE  8080
-CMD ["/bin/bash", "-c",  \
-"service tomcat7 start;while service tomcat7 status;do sleep 1;done"]
-! ) &gt; Dockerfile
 
+CMD ["/bin/bash", "-c",  "service tomcat7 start;while service tomcat7 status;do sleep 1;done"]
+```
+
+```
 # Build a new image
 $ docker build -t $USER/tomcat7 .
 ```
