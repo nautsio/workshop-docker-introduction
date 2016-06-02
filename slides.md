@@ -45,55 +45,80 @@
 !SLIDE
 ## Enter Docker
 
-<center>
-<ul>
-<li>You get all the goodies of virtual machine per appliance, but without the cost.</li>
-<ul>
-<li>Filesystem isolation</li>
-<li>Resource isolation</li>
-<li>Network isolation</li>
-</ul>
-<li>And it is fast!</li>
-</ul>
-</center>
+You get all the goodies of virtual machine per appliance, but without the cost.
 
+- Filesystem isolation
+- Resource isolation
+- Network isolation
+
+And it is fast!
 
 
 
 
 !SLIDE
 ## What is Docker?
-<center>
-<p>
-		Lightweight application containers, based on:
-<ul>
-<li><a href="http://lxc.sourceforge.net/">LinuX Containers (LXC)</a></li>
-<li><a href="http://aufs.sourceforge.net/">AUFS</a></li>
-<li>Isolated networking</li>
-</ul>
-</p>
-</center>
+
+- Container management for Linux
+- Abstraction for DevOps workflow
+- Adds images, image repository and version control to containers
+
+!SUB
+## Docker by Numbers
+
+- 400.000.000 downloads
+- 300.000+ Dockerized applications
+- 50.000+ third party projects on Github
+- 150.000.000 dollar in funding
 
 
-!SLIDE
-## Docker Daemon, Processes and Images
-<center>
-<p>Docker itself is a single executable daemon</p>
-<p>Manages Docker Processes, inside LXC containers</p>
-<p>Docker Process is instance of Docker <code>image</p>
-</center>
+!SUB
+## Basic Components
+<center><div style="width: 75%; height: auto;"><img src="img/docker-basic-components.png"/></div></center>
+
+
+
+!SUB
+## Creating a Docker image
+<center><div style="width: 75%; height: auto;"><img src="img/create-docker-image.png"/></div></center>
+
+!SUB 
+## Dockerfile
+
+```
+FROM stackbrew/ubuntu
+RUN apt-get update && apt-get install -y apache2 && apt-get clean
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+EXPOSE 80
+CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+```
+
+!SUB
+## Docker Images
+
+<div style="position: absolute; right: 0; top:100; width: 25%; height: auto;"><img src="img/docker-image.png"/></div>
+- contain everything needed to run the app
+- are portable across daemons
+- are built in layers
+  - ordered to actions, Add file, Expose port, Run 
+- stored in a Registry
+
+
+!SUB 
+## Docker Hub - Image Registry
+<div style="position: absolute; right: 0; top:100; width: 40%; height: auto;"><img src="img/docker-hub.png"/></div>
+- Contains Docker images
+- Public Registry with official images
+- Hosts your own private Registry 
+
+!SUB
+## Running a container
+<center><div style="width: 75%; height: auto;"><img src="img/run-docker-container.png"/></div></center>
 
 
 !SLIDE
 ## Portable images
-<center>
-<p>Images contain everything needed to run your application</p>
-<p>When instantiated, it runs exactly one primary process <small>(from which you could spawn many more)</small></p>
-<p>Images are portable across daemons</p>
-<p>Images are built in layers</p>
-</center>
-
-
 
 
 !SLIDE
