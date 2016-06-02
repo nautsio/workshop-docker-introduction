@@ -578,13 +578,23 @@ CMD ["/bin/bash", "-c",  \
 $ docker build -t $USER/tomcat7 .
 ```
 
+!SLIDE
+## push to the registry
+
+create an account on hub.docker.com
+
+```
+$ docker login
+$ docker tag -t &lt;docker-hub-name>/tomcat7:v0.1 $USER/tomcat7
+$ docker push &lt;docker-hub-name>/tomcat7:v0.1 
+```
 
 !SUB
 ## running tomcat
 
 ```
 # Start a tomcat container
-$ DOCKER_ID=$(docker run -P –d $USER/tomcat7)
+$ DOCKER_ID=$(docker run -P –d &lt;docker-hub-name>/tomcat7:v0.1)
 # docker inspect show details about the container
 $ docker inspect $DOCKER_ID
 # Obtain mapped port of port 8080 of the container
@@ -606,10 +616,10 @@ $ wget http://$IPADDRESS:8080
 count=0
 TOMCAT_IPS=""
 while [ $count -lt 5 ] ; do
-DOCKER_ID=$(docker run -P -d $USER/tomcat7)
-IPADDRESS=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER_ID)
-TOMCAT_IPS="$TOMCAT_IPS $IPADDRESS"
-count=$(($count + 1))
+  DOCKER_ID=$(docker run -P –d &lt;docker-hub-name>/tomcat7:v0.1)
+  IPADDRESS=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER_ID)
+  TOMCAT_IPS="$TOMCAT_IPS $IPADDRESS"
+  count=$(($count + 1))
 done
 echo all tomcats : $TOMCAT_IPS
 ```
