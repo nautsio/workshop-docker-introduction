@@ -554,7 +554,6 @@ Create a file 'Dockerfile' in the subdirectory tomcat7 with the following conten
 FROM    tomcat
 ```
 
-```
 Build a new image
 
 ```
