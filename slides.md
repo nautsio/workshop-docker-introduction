@@ -586,11 +586,11 @@ $ docker inspect $DOCKER_ID
 # Obtain mapped port of port 8080 of the container
 $ PORT=$(docker port $DOCKER_ID 8080)
 # access tomcat via mapped port
-$ wget http://localhost:$PORT
+$ curl http://localhost:$PORT
 # Obtain ip address of container
 $ IPADDRESS=$(docker inspect inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER_ID)
 # http request on image IP address
-$ wget http://$IPADDRESS:8080
+$ curl http://$IPADDRESS:8080
 ```
 
 
@@ -609,6 +609,16 @@ while [ $count -lt 5 ] ; do
 done
 echo all tomcats : $TOMCAT_IPS
 ```
+
+!SLIDE
+## Create a Docker image using Visual Studio
+- Install Docker for Visual Studio
+- Create a new .NET Core Web Application
+- Add Docker to the Web Project
+- Create a docker image from the bin\\docker\\app directory
+- Push the image to the registry
+- run your application as a container!
+
 
 !SLIDE
 <center><div style="width: 75%; height: auto;"><img src="img/xpirit.png"/></div></center>
