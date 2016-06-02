@@ -569,7 +569,7 @@ create an account on hub.docker.com
 
 ```
 $ docker login
-$ docker tag -t <docker-hub-name>/tomcat7:v0.1 $USER/tomcat7
+$ docker tag $USER/tomcat7 <docker-hub-name>/tomcat7:v0.1
 $ docker push <docker-hub-name>/tomcat7:v0.1
 ```
 
