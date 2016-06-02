@@ -344,7 +344,7 @@ $ docker run ubuntu /bin/echo "hello world"
 
 Start /bin/bash in a container
 ```
-$ docker run -t -i base /bin/bash
+$ docker run -t -i ubuntu /bin/bash
 root@e97c6f8d0013:/#
 
 # look around all your processes
@@ -368,7 +368,7 @@ $ exit
 Running containers in the background
 ```
 # run -d means detached detach
-$ DOCKER_ID=$(docker run -d base \
+$ DOCKER_ID=$(docker run -d ubuntu \
 bash -c \'while true ; \
 	do sleep 1; \
 	echo hello world at $(date); \
@@ -386,10 +386,10 @@ $ docker rm $DOCKER_ID      # removes the container
 
 ```
 # Look at an empty filesystem
-$ docker run base /bin/ls /tmp
+$ docker run ubuntu /bin/ls /tmp
 
 # Modify the filesystem
-$ DOCKER_ID=$(docker run -d base \
+$ DOCKER_ID=$(docker run -d ubuntu \
 bash -c \'while true ; do \
 		date &gt; /tmp/$(date +%Y%m%d%H%M); \
 		sleep 60;\
@@ -400,7 +400,7 @@ $ docker diff $DOCKER_ID
 # Stop the instance
 $ docker stop $DOCKER_ID ; docker rm $DOCKER_ID
 # Changes are gone!
-$ docker run base /bin/ls /tmp
+$ docker run ubuntu /bin/ls /tmp
 ```
 
 
@@ -410,7 +410,7 @@ $ docker run base /bin/ls /tmp
 
 ```
 # Modify the filesystem
-$ DOCKER_ID=$(docker run -d base \
+$ DOCKER_ID=$(docker run -d ubuntu \
 bash -c \'while true ; do \
 	date &gt; /tmp/$(date +%Y%m%d%H%M); \
 	sleep 60; \
@@ -565,7 +565,7 @@ INSTRUCTION arguments
 ```
 # Create a Docker file
 $ ( cat &lt;&lt;!
-FROM    base
+FROM    ubuntu
 
 RUN     apt-get -y install tomcat7
 
