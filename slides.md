@@ -530,7 +530,6 @@ INSTRUCTION arguments
 <li>Syntax: EXPOSE &lt;port&gt; [&lt;port&gt; ...]</li>
 <li>Defines which ports to expose</li>
 </ul>
-<p><br />See <a href="http://docs.docker.io/en/latest/use/port_redirection/#port-redirection">Port Redirection</a> for exposing ports on the host</p>
 </center>
 
 
