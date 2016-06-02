@@ -391,7 +391,7 @@ $ docker run ubuntu /bin/ls /tmp
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d ubuntu \
 bash -c 'while true ; do \
-		date &gt; /tmp/$(date +%Y%m%d%H%M); \
+		date > /tmp/$(date +%Y%m%d%H%M); \
 		sleep 60;\
 	done')
 
@@ -412,7 +412,7 @@ $ docker run ubuntu /bin/ls /tmp
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d ubuntu \
 bash -c 'while true ; do \
-	date &gt; /tmp/$(date +%Y%m%d%H%M); \
+	date > /tmp/$(date +%Y%m%d%H%M); \
 	sleep 60; \
      done' )
 
