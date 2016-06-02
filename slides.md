@@ -562,6 +562,9 @@ INSTRUCTION arguments
 !SUB
 ## creating a tomcat image
 
+Create a file 'Dockerfile' in the subdirectory tomcat7 with the
+following content.
+
 ```
 # Create a Docker file
 
@@ -577,6 +580,7 @@ CMD ["/bin/bash", "-c",  "service tomcat7 start;while service tomcat7 status;do 
 
 ```
 # Build a new image
+$ cd tomcat7
 $ docker build -t $USER/tomcat7 .
 ```
 
