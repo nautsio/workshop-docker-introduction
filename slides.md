@@ -333,8 +333,8 @@ CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
 Install your docker-machine on your machine
 ```
-$ sudo docker pull base
-$ docker run base /bin/echo "hello world"
+$ docker pull ubuntu
+$ docker run ubuntu /bin/echo "hello world"
 ```
 
 
