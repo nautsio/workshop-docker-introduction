@@ -534,19 +534,6 @@ INSTRUCTION arguments
 </center>
 
 
-
-!SLIDE
-## Lab exercise
-<center>
-<ul>
-<li>Create a tomcat7 image name $USER/tomcat7</li>
-<li>push it to the Docker Hub registry</li>
-<li>start 5 instances</li>
-<li>show they are operational</li>
-</ul>
-</center>
-
-
 !SLIDE
 ## Lab exercise
 <center>
