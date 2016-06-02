@@ -327,22 +327,6 @@ $ docker run base /bin/echo "hello world"
 ```
 
 
-
-!SUB
-## INSTALL JQ Utility
-
-
-```
-$ mkdir -p ~/bin
-$ cd ~/bin
-$ wget http://stedolan.github.io/jq/download/linux64/jq
-$ chmod +x ~/bin/jq
-$ export PATH=$PATH:~/bin
-```
-
-
-
-
 !SLIDE
 ## Interactive containers
 
@@ -386,10 +370,6 @@ $ docker ps -a 	      	    # shows stopped and running containers
 $ docker rm $DOCKER_ID      # removes the container
 ```
 
-
-
-
-
 !SLIDE
 ## versioned file system
 
@@ -399,10 +379,10 @@ $ docker run base /bin/ls /tmp
 
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d base \
-bash -c 'while true ; do \
+bash -c \'while true ; do \
 		date &gt; /tmp/$(date +%Y%m%d%H%M); \
 		sleep 60;\
-	done')
+	done\')
 
 # See the changes on the filesystem
 $ docker diff $DOCKER_ID
@@ -420,10 +400,10 @@ $ docker run base /bin/ls /tmp
 ```
 # Modify the filesystem
 $ DOCKER_ID=$(docker run -d base \
-bash -c 'while true ; do \
+bash -c \'while true ; do \
 	date &gt; /tmp/$(date +%Y%m%d%H%M); \
 	sleep 60; \
-     done' )
+     done\' )
 
 # See the changes on the filesystem and commit
 $ docker diff $DOCKER_ID
@@ -450,12 +430,11 @@ $ docker run $USER/mydemo /bin/ls /tmp
 INSTRUCTION arguments
 ```
 
-<p style="clear: both;"><br/>See <a href="http://docs.docker.io/en/latest/use/builder/">http://docs.docker.io/en/latest/use/builder/</a></p>
+<p style="clear: both;"><br/>See <a href="https://docs.docker.com/v1.8/reference/builder/">https://docs.docker.com/v1.8/reference/builder/</a></p>
 
 !SUB
 ## Instructions
 
-<div style="float: left; width: 50%;">
 <ul>
 <li>FROM</li>
 <li>MAINTAINER</li>
@@ -463,10 +442,6 @@ INSTRUCTION arguments
 <li>CMD</li>
 <li>EXPOSE</li>
 <li>ENTRYPOINT</li>
-</ul>
-
-<div style="float: right; width: 50%;">
-<ul>
 <li>ENV</li>
 <li>ADD</li>
 <li>VOLUME</li>
@@ -615,8 +590,7 @@ $ PORT=$(docker port $DOCKER_ID 8080)
 # access tomcat via mapped port
 $ wget http://localhost:$PORT
 # Obtain ip address of container
-$ IPADDRESS=$(docker inspect $DOCKER_ID | \
-	jq -r '.[0] | .NetworkSettings.IPAddress')
+$ IPADDRESS=$(docker inspect inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER_ID)
 # http request on image IP address
 $ wget http://$IPADDRESS:8080
 ```
@@ -633,8 +607,7 @@ count=0
 TOMCAT_IPS=""
 while [ $count -lt 5 ] ; do
 DOCKER_ID=$(docker run -P -d $USER/tomcat7)
-IPADDRESS=$(docker inspect $DOCKER_ID | \
-	jq -r '.[0] | .NetworkSettings.IPAddress')
+IPADDRESS=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' $DOCKER_ID)
 TOMCAT_IPS="$TOMCAT_IPS $IPADDRESS"
 count=$(($count + 1))
 done
