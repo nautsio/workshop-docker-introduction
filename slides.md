@@ -1,0 +1,643 @@
+<center><div style="width: 75%; height: auto;"><img src="img/xpirit.png"/></div></center>
+<br />
+<center>
+<table>
+<tr>
+<td>**Slides**</td><td>[http://nauts.io/workshop-docker-introduction](http://nauts.io/workshop-docker-introduction)</td>
+</tr>
+</table>
+</center>
+
+!SLIDE
+# Docker
+<center>
+<p>The catalyst of the DevOps Movement</p>
+<p><img src="img/docker-logo-no-text.png" style="border: none; background: none; box-shadow: none;"/></p>
+<p>
+    Mark van Holsteijn - <a href="mailto:mvanholsteijn@xebia.com">mvanholsteijn@xebia.com</a><br/>
+    Adé Mochtar - <a href="mailto:amochtar@xebia.com">amochtar@xebia.com</a>
+</p>
+</center>
+
+
+!SLIDE
+## What's the problem with VM's?
+
+<center>
+<ul>
+<li>Within our private PaaS approach we like to keep things simple by creating a virtual machine per appliance</li>
+<li>Good for:</li>
+<ul>
+<li>managebility</li>
+<li>operability</li>
+<li>resource management</li>
+</ul>
+<li>But simplicity comes at a price...</li>
+<ul>
+<li>License cost</li>
+<li>Resources overhead / performance</li>
+</ul>
+</ul>
+
+</center>
+
+
+!SLIDE
+## Enter Docker
+
+<center>
+<ul>
+<li>You get all the goodies of virtual machine per appliance, but without the cost.</li>
+<ul>
+<li>Filesystem isolation</li>
+<li>Resource isolation</li>
+<li>Network isolation</li>
+</ul>
+<li>And it is fast!</li>
+</ul>
+</center>
+
+
+
+
+
+!SLIDE
+## What is Docker?
+<center>
+<p>
+		Lightweight application containers, based on:
+<ul>
+<li><a href="http://lxc.sourceforge.net/">LinuX Containers (LXC)</a></li>
+<li><a href="http://aufs.sourceforge.net/">AUFS</a></li>
+<li>Isolated networking</li>
+</ul>
+</p>
+</center>
+
+
+!SLIDE
+## Docker Daemon, Processes and Images
+<center>
+<p>Docker itself is a single executable daemon</p>
+<p>Manages Docker Processes, inside LXC containers</p>
+<p>Docker Process is instance of Docker <code>image</p>
+</center>
+
+
+!SLIDE
+## Portable images
+<center>
+<p>Images contain everything needed to run your application</p>
+<p>When instantiated, it runs exactly one primary process <small>(from which you could spawn many more)</small></p>
+<p>Images are portable across daemons</p>
+<p>Images are built in layers</p>
+</center>
+
+
+
+
+!SLIDE
+## Docker Image Layers
+
+!SUB
+## Filesystems
+<center>
+<p>
+		Linux requires two filesystems<br/>
+<img src="img/docker-filesystems-generic.png" style="width: 50%; height: 50%;" />
+</p>
+</center>
+
+
+!SUB
+## Multiple rootfs
+<p>
+<center>
+		Docker supports multiple rootfs<br/>
+<img src="img/docker-filesystems-multiroot.png" style="width: 50%; height: 50%;" />
+</p>
+</center>
+
+
+!SUB
+## Docker Image
+<center>
+<p>
+		Read-only layers are called images<br/>
+<img src="img/docker-filesystems-debian.png" style="width: 50%; height: 50%;" />
+</p>
+</center>
+
+
+!SUB
+## Stacking images
+<center>
+<p>
+		Images can depend on other images, called parents<br/>
+<img src="img/docker-filesystems-multilayer.png" style="width: 50%; height: 50%;" />
+</p>
+</center>
+
+
+!SUB
+## Writable containers
+<center>
+<p>
+		On top of images docker creates writable containers<br/>
+<img src="img/docker-filesystems-busyboxrw.png" style="width: 50%; height: 50%;" />
+</p>
+</center>
+
+
+
+!SLIDE
+## Docker commands
+<center>
+<ul>
+<li>Runtime</li>
+<li>Information</li>
+<li>Filesystem</li>
+<li>Images</li>
+<li>Repository</li>
+</ul>
+</center>
+
+!SUB
+## Runtime
+<center>
+<table>
+<tbody>
+<tr>
+<td>ps</td>
+<td>List containers</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>Kill a running container</td>
+</tr>
+<tr>
+<td>restart</td>
+<td>Restart a running container</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>Remove a container</td>
+</tr>
+<tr>
+<td>run</td>
+<td>Run a command in a new container</td>
+</tr>
+<tr>
+<td>start</td>
+<td>Start a stopped container</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>Stop a running container</td>
+</tr>
+<tr>
+<td>wait</td>
+<td>Block until a container stops, then print its exit code</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+!SUB
+## Information
+<center>
+<table>
+<tbody>
+<tr>
+<td>info</td>
+<td>Display system-wide information</td>
+</tr>
+<tr>
+<td>inspect</td>
+<td>Return low-level information on a container</td>
+</tr>
+<tr>
+<td>logs</td>
+<td>Fetch the logs of a container</td>
+</tr>
+<tr>
+<td>port</td>
+<td>Lookup the public-facing port which is NAT-ed to PRIVATE_PORT</td>
+</tr>
+<tr>
+<td>attach</td>
+<td>Attach to a running container</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+!SUB
+## Filesystems
+<center>
+<table>
+<tbody>
+<tr>
+<td>insert</td>
+<td>Insert a file in an image</td>
+</tr>
+<tr>
+<td>diff</td>
+<td>Inspect changes on a container's filesystem</td>
+</tr>
+<tr>
+<td>commit</td>
+<td>Create a new image from a container's changes</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+!SUB
+## Images
+<center>
+<table>
+<tbody>
+<tr>
+<td>build</td>
+<td>Build a container from a Dockerfile</td>
+</tr>
+<tr>
+<td>import</td>
+<td>Create a new filesystem image from the contents of a tarball</td>
+</tr>
+<tr>
+<td>export</td>
+<td>Stream the contents of a container as a tar archive</td>
+</tr>
+<tr>
+<td>images</td>
+<td>List images</td>
+</tr>
+<tr>
+<td>rmi</td>
+<td>Remove an image</td>
+</tr>
+<tr>
+<td>history</td>
+<td>Show the history of an image</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+!SUB
+## Repository 
+<center>
+<table>
+<tbody>
+<tr>
+<td>login</td>
+<td>Register or Login to the docker registry server</td>
+</tr>
+<tr>
+<td>pull</td>
+<td>Pull an image or a repository from the docker registry server</td>
+</tr>
+<tr>
+<td>push</td>
+<td>Push an image or a repository to the docker registry server</td>
+</tr>
+<tr>
+<td>search</td>
+<td>Search for an image in the docker index</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>Tag an image into a repository</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+
+
+!SLIDE
+## Getting Started
+
+Install your docker-machine on 
+```
+$ sudo docker pull base
+$ docker run base /bin/echo "hello world"
+```
+
+
+
+!SUB
+## INSTALL JQ Utility
+
+
+```
+$ mkdir -p ~/bin
+$ cd ~/bin
+$ wget http://stedolan.github.io/jq/download/linux64/jq
+$ chmod +x ~/bin/jq
+$ export PATH=$PATH:~/bin
+```
+
+
+
+
+!SLIDE
+## Interactive containers
+
+
+Start /bin/bash in a container
+```
+$ docker run -t -i base /bin/bash
+root@e97c6f8d0013:/#
+
+# look around all your processes
+$ ps -ef
+
+# Checkout your file system
+$ ls
+
+# and your network
+$ ifconfig
+
+# logout (container is stopped as /bin/bash exits)
+$ exit
+```
+
+
+
+!SUB
+## detached containers
+
+Running containers in the background
+```
+# run -d means detached detach
+$ DOCKER_ID=$(docker run -d base \
+bash -c \'while true ; \
+	do sleep 1; \
+	echo hello world at $(date); \
+	done\' )
+$ echo $DOCKER_ID           # shows id of container
+$ docker attach $DOCKER_ID  # attach to stdout of the container
+$ docker ps 	      	    # shows all running containers
+$ docker stop $DOCKER_ID    # stops specified container 
+$ docker ps -a 	      	    # shows stopped and running containers
+$ docker rm $DOCKER_ID      # removes the container
+```
+
+
+
+
+
+!SLIDE
+## versioned file system
+
+```
+# Look at an empty filesystem
+$ docker run base /bin/ls /tmp
+
+# Modify the filesystem
+$ DOCKER_ID=$(docker run -d base \
+bash -c 'while true ; do \
+		date &gt; /tmp/$(date +%Y%m%d%H%M); \
+		sleep 60;\
+	done')
+
+# See the changes on the filesystem
+$ docker diff $DOCKER_ID
+# Stop the instance
+$ docker stop $DOCKER_ID ; docker rm $DOCKER_ID
+# Changes are gone!
+$ docker run base /bin/ls /tmp
+```
+
+
+!SLIDE
+## creating a new image
+
+
+```
+# Modify the filesystem
+$ DOCKER_ID=$(docker run -d base \
+bash -c 'while true ; do \
+	date &gt; /tmp/$(date +%Y%m%d%H%M); \
+	sleep 60; \
+     done' )
+
+# See the changes on the filesystem and commit
+$ docker diff $DOCKER_ID
+$ docker commit $DOCKER_ID $USER/mydemo  # name of image $USER/mydemo
+
+# Stop and remove the instance
+$ docker stop $DOCKER_ID ; docker rm $DOCKER_ID
+
+# Changes are persisted!
+$ docker run $USER/mydemo /bin/ls /tmp
+```
+
+
+
+
+
+!SLIDE
+## Dockerfile
+
+<p>Simple format</p>
+
+```
+# Comment
+INSTRUCTION arguments
+```
+
+<p style="clear: both;"><br/>See <a href="http://docs.docker.io/en/latest/use/builder/">http://docs.docker.io/en/latest/use/builder/</a></p>
+
+!SUB
+## Instructions
+
+<div style="float: left; width: 50%;">
+<ul>
+<li>FROM</li>
+<li>MAINTAINER</li>
+<li>RUN</li>
+<li>CMD</li>
+<li>EXPOSE</li>
+<li>ENTRYPOINT</li>
+</ul>
+
+<div style="float: right; width: 50%;">
+<ul>
+<li>ENV</li>
+<li>ADD</li>
+<li>VOLUME</li>
+<li>USER</li>
+<li>WORKDIR</li>
+</ul>
+
+
+
+!SUB
+## FROM
+
+<center>
+<ul>
+<li>Syntax: FROM &lt;image&gt;[:&lt;tag&gt;]</li>
+<li>Sets the base image for this image</li>
+<li>FROM must be the first non-comment instruction in the Dockerfile.</li>
+<li>Can appear multiple times to create multiple images</li>
+</ul>
+</center>
+
+
+!SUB
+## RUN
+
+<center>
+<ul>
+<li>Syntax: RUN &lt;command&gt;</li>
+<li>Runs the specified command, and commits the result to the image</li>
+<li>RUN can be used multiple times</li>
+<center>
+</ul>
+</center>
+
+!SUB
+## CMD
+
+<center>
+<ul>
+<li>Syntax:
+<ul>
+<li>CMD ["executable","param1","param2"]</li>
+<li>CMD ["param1","param2"], use with <code>ENTRYPOINT</li>
+<li>CMD command param1 param2</li>
+</ul>
+</li>
+<li>Provides defaults when executing a container</li>
+<li>CMD can only be used <em>one</em> time</li>
+</ul>
+</center>
+
+
+!SUB
+## ENTRYPOINT
+
+<center>
+<ul>
+<li>Syntax:
+<ul>
+<li>ENTRYPOINT ["executable","param1","param2"]</li>
+<li>ENTRYPOINT command param1 param2</li>
+</ul>
+</li>
+<li>Similar as CMD, but cannot be overwritten with command-line parameters</li>
+<li>ENTRYPOINT can only be used <em>one</em> time</li>
+</ul>
+</center>
+
+
+!SUB
+## EXPOSE
+
+<center>
+<ul>
+<li>Syntax: EXPOSE &lt;port&gt; [&lt;port&gt; ...]</li>
+<li>Defines which ports to expose</li>
+</ul>
+<p><br />See <a href="http://docs.docker.io/en/latest/use/port_redirection/#port-redirection">Port Redirection</a> for exposing ports on the host</p>
+</center>
+
+
+!SUB
+## Example dockerfile
+
+```
+# Firefox over VNC
+# VERSION               0.3
+FROM ubuntu
+# make sure the package repository is up to date
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
+# Install vnc, xvfb in order to create a 'fake' display and firefox
+RUN apt-get install -y x11vnc xvfb firefox
+RUN mkdir /.vnc
+# Setup a password
+RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
+# Autostart firefox (might not be the best way, but it does the trick)
+RUN bash -c 'echo "firefox" >> /.bashrc'
+EXPOSE 5900
+CMD    ["x11vnc", "-forever", "-usepw", "-create"]
+
+```
+
+
+
+!SLIDE
+## Lab exercise
+<center>
+<ul><li>Create a tomcat7 image name $USER/tomcat7</li>
+<li>start 5 instances</li>
+<li>show they are operational</li>
+</ul>
+</center>
+
+
+!SLIDE
+## creating a tomcat image
+
+```
+# Create a Docker file
+$ ( cat &lt;&lt;!
+FROM    base
+
+RUN     apt-get -y install tomcat7
+
+EXPOSE  8080
+CMD ["/bin/bash", "-c",  \
+"service tomcat7 start;while service tomcat7 status;do sleep 1;done"]
+! ) &gt; Dockerfile
+
+# Build a new image
+$ docker build -t $USER/tomcat7 .
+```
+
+
+!SUB
+## running tomcat
+
+```
+# Start a tomcat container
+$ DOCKER_ID=$(docker run -P –d $USER/tomcat7)
+# docker inspect show details about the container
+$ docker inspect $DOCKER_ID
+# Obtain mapped port of port 8080 of the container
+$ PORT=$(docker port $DOCKER_ID 8080)
+# access tomcat via mapped port
+$ wget http://localhost:$PORT
+# Obtain ip address of container
+$ IPADDRESS=$(docker inspect $DOCKER_ID | \
+	jq -r '.[0] | .NetworkSettings.IPAddress')
+# http request on image IP address
+$ wget http://$IPADDRESS:8080
+```
+
+
+
+
+!SUB
+## creating a farm of tomcat
+
+
+```
+count=0
+TOMCAT_IPS=""
+while [ $count -lt 5 ] ; do
+DOCKER_ID=$(docker run -P -d $USER/tomcat7)
+IPADDRESS=$(docker inspect $DOCKER_ID | \
+	jq -r '.[0] | .NetworkSettings.IPAddress')
+TOMCAT_IPS="$TOMCAT_IPS $IPADDRESS"
+count=$(($count + 1))
+done
+echo all tomcats : $TOMCAT_IPS
+```
+
