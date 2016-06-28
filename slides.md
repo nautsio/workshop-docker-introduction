@@ -1,22 +1,14 @@
-<center><div style="width: 75%; height: auto;"><img src="img/xpirit.png"/></div></center>
-<br />
-<center>
-<table>
-<tr>
-<td>**Slides**</td><td>[http://nauts.io/workshop-docker-introduction](http://nauts.io/workshop-docker-introduction)</td>
-</tr>
-</table>
-</center>
+<!-- .slide: data-background="#6B205E" -->
+<center><div style="width: 75%; height: auto;"><img src="img/xebia.svg"/></div></center>
 
 !SLIDE
-# Docker
+## Docker - the catalyst of the DevOps Movement
 <center>
-<p>The catalyst of the DevOps Movement</p>
 <p><img src="img/docker-logo-no-text.png" style="border: none; background: none; box-shadow: none;"/></p>
-<p>
+</center>
     Mark van Holsteijn - <a href="mailto:mvanholsteijn@xebia.com">mvanholsteijn@xebia.com</a><br/>
-    Adé Mochtar - <a href="mailto:amochtar@xebia.com">amochtar@xebia.com</a>
-</p>
+    Adé Mochtar - <a href="mailto:amochtar@xebia.com">amochtar@xebia.com</a> <br/><br/>
+    **Slides** - [http://nauts.io/workshop-docker-introduction](http://nauts.io/workshop-docker-introduction)
 </center>
 
 
@@ -101,10 +93,6 @@ CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 !SUB
 ## Running a container
 <center><div style="width: 75%; height: auto;"><img src="img/run-docker-container.png"/></div></center>
-
-
-!SLIDE
-## Portable images
 
 
 !SLIDE
